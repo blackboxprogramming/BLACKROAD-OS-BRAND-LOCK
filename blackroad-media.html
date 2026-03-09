@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlackRoad Media</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;shape-rendering:geometricPrecision}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;-webkit-text-stroke:.2px rgba(255,255,255,.1)}
+:root{
+  --g:linear-gradient(90deg,#FF6B2B,#FF2255,#CC00AA,#8844FF,#4488FF,#00D4FF);
+  --g135:linear-gradient(135deg,#FF6B2B,#FF2255,#CC00AA,#8844FF,#4488FF,#00D4FF);
+  --bg:#000;--white:#fff;--black:#000;--border:#1a1a1a;
+  --sg:'Space Grotesk',sans-serif;--jb:'JetBrains Mono',monospace;
+}
+body{background:var(--bg);color:var(--white);font-family:var(--sg);overflow-x:hidden}
+
+.grad-bar{height:4px;background:var(--g);image-rendering:crisp-edges}
+
+/* ═══ NAV ═══ */
+nav{display:flex;align-items:center;justify-content:space-between;padding:16px 48px;border-bottom:1px solid var(--border)}
+.nav-logo{font-weight:700;font-size:20px;color:var(--white);display:flex;align-items:center;gap:10px}
+.nav-logo-mark{width:28px;height:4px;border-radius:2px;background:var(--g);image-rendering:crisp-edges}
+.nav-links{display:flex;gap:32px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--white);opacity:.5;text-decoration:none;transition:opacity .2s}
+.nav-links a:hover{opacity:1}
+.btn-outline{padding:8px 20px;border:1px solid var(--border);border-radius:6px;background:transparent;color:var(--white);font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sg);transition:border-color .2s}
+.btn-outline:hover{border-color:#444}
+.btn-solid{padding:8px 20px;border:none;border-radius:6px;background:var(--white);color:var(--black);font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sg)}
+
+/* ═══ HERO ═══ */
+.hero{text-align:center;padding:120px 48px 80px;position:relative}
+.orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:.06;pointer-events:none}
+.orb-1{width:400px;height:400px;background:#FF2255;top:-150px;left:-5%}
+.orb-2{width:350px;height:350px;background:#4488FF;top:-100px;right:-5%}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border:1px solid var(--border);border-radius:20px;font-size:12px;font-weight:500;color:var(--white);margin-bottom:32px}
+.hero-badge-dot{width:8px;height:8px;border-radius:50%;background:var(--g135)}
+.hero h1{font-size:64px;font-weight:700;color:var(--white);line-height:1.08;margin-bottom:24px;max-width:780px;margin-left:auto;margin-right:auto;letter-spacing:-.02em}
+.hero p{font-size:18px;color:var(--white);opacity:.45;max-width:520px;margin:0 auto 48px;line-height:1.7}
+.hero-cta{display:flex;gap:16px;justify-content:center}
+.btn-lg{padding:14px 36px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;font-family:var(--sg)}
+.btn-lg-solid{background:var(--white);color:var(--black);border:none}
+.btn-lg-outline{background:transparent;color:var(--white);border:1px solid var(--border);transition:border-color .2s}
+.btn-lg-outline:hover{border-color:#444}
+
+/* ═══ SECTIONS ═══ */
+.section{max-width:1200px;margin:0 auto;padding:80px 48px}
+.section-label{font-family:var(--jb);font-size:10px;color:var(--white);opacity:.25;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.section-title{font-size:32px;font-weight:700;color:var(--white);margin-bottom:12px;letter-spacing:-.015em}
+.section-desc{font-size:14px;color:var(--white);opacity:.4;max-width:460px;margin-bottom:48px}
+
+/* ═══ FEATURED STORY — large outlined card ═══ */
+.featured{border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .2s;position:relative}
+.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--g);image-rendering:crisp-edges;z-index:1}
+.featured:hover{border-color:#333}
+.featured-banner{height:160px;position:relative;overflow:hidden}
+.featured-banner-shape{position:absolute;border-radius:50%;border:2px solid rgba(255,255,255,.06)}
+.fbs-1{width:240px;height:240px;top:-40px;right:10%}
+.fbs-2{width:160px;height:160px;bottom:-40px;left:15%}
+.fbs-3{width:100px;height:100px;top:20%;left:40%;border-radius:6px;transform:rotate(45deg)}
+.featured-body{padding:32px}
+.featured-tag{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border:1px solid var(--border);border-radius:4px;font-family:var(--jb);font-size:10px;color:var(--white);opacity:.4;margin-bottom:14px}
+.featured-tag::before{content:'';width:8px;height:3px;border-radius:1px;background:var(--g);image-rendering:crisp-edges}
+.featured h2{font-size:24px;font-weight:700;color:var(--white);margin-bottom:10px;letter-spacing:-.01em}
+.featured p{font-size:14px;color:var(--white);opacity:.4;line-height:1.7;max-width:600px;margin-bottom:14px}
+.featured-meta{font-family:var(--jb);font-size:11px;color:var(--white);opacity:.2}
+
+/* ═══ CONTENT GRID — mixed layout ═══ */
+.content-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.content-card{border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:border-color .2s;position:relative}
+.content-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--g);image-rendering:crisp-edges}
+.content-card:hover{border-color:#333}
+.content-thumb{height:80px;position:relative;overflow:hidden}
+.content-thumb-bg{position:absolute;inset:0;background:transparent}
+.content-thumb{border-bottom:1px solid var(--border)}
+.content-thumb-shape{position:absolute;border:1px solid rgba(255,255,255,.08);border-radius:50%}
+.cts-1{width:100px;height:100px;top:-20px;right:10%}
+.cts-2{width:60px;height:60px;bottom:-10px;left:15%}
+.content-body{padding:20px}
+.content-type{font-family:var(--jb);font-size:10px;color:var(--white);opacity:.25;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+.content-title{font-size:14px;font-weight:600;color:var(--white);margin-bottom:6px}
+.content-desc{font-size:12px;color:var(--white);opacity:.35;line-height:1.6}
+.content-date{font-family:var(--jb);font-size:10px;color:var(--white);opacity:.2;margin-top:10px}
+
+/* ═══ CATEGORIES — horizontal tabs, outlined ═══ */
+.cat-row{display:flex;gap:8px;margin-bottom:32px;flex-wrap:wrap}
+.cat-btn{padding:8px 18px;border:1px solid var(--border);border-radius:20px;background:transparent;color:var(--white);opacity:.4;font-size:12px;font-weight:500;cursor:pointer;font-family:var(--sg);transition:all .2s}
+.cat-btn:hover{opacity:.7;border-color:#333}
+.cat-btn.active{opacity:1;border-color:#444}
+
+/* ═══ LATEST — lined rows ═══ */
+.latest-list{border-top:1px solid var(--border)}
+.latest-row{display:grid;grid-template-columns:1fr auto;gap:24px;padding:22px 0;border-bottom:1px solid var(--border);align-items:center;transition:opacity .15s}
+.latest-row:hover{opacity:.8}
+.latest-type{font-family:var(--jb);font-size:10px;color:var(--white);opacity:.2;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.latest-title{font-size:15px;font-weight:600;color:var(--white);margin-bottom:4px}
+.latest-desc{font-size:12px;color:var(--white);opacity:.35;max-width:560px}
+.latest-date{font-family:var(--jb);font-size:11px;color:var(--white);opacity:.2;white-space:nowrap}
+
+/* ═══ NEWSLETTER — outlined card with gradient top ═══ */
+.newsletter{border:1px solid var(--border);border-radius:12px;overflow:hidden;max-width:600px;margin:0 auto}
+.newsletter-grad{height:3px;background:var(--g);image-rendering:crisp-edges}
+.newsletter-body{padding:40px;text-align:center}
+.newsletter-body h3{font-size:22px;font-weight:700;color:var(--white);margin-bottom:8px;letter-spacing:-.01em}
+.newsletter-body p{font-size:13px;color:var(--white);opacity:.4;margin-bottom:24px}
+.newsletter-form{display:flex;gap:10px;max-width:400px;margin:0 auto}
+.newsletter-input{flex:1;padding:12px 16px;border:1px solid var(--border);border-radius:6px;background:transparent;color:var(--white);font-size:13px;font-family:var(--sg);outline:none;transition:border-color .2s}
+.newsletter-input:focus{border-color:#333}
+.newsletter-input::placeholder{color:var(--white);opacity:.2}
+.newsletter-btn{padding:12px 24px;border:none;border-radius:6px;background:var(--white);color:var(--black);font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sg);white-space:nowrap}
+
+/* ═══ CHANNELS — outlined cards, 3-col ═══ */
+.channel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.channel-card{border:1px solid var(--border);border-radius:10px;padding:28px;text-align:center;transition:border-color .2s}
+.channel-card:hover{border-color:#333}
+.channel-icon{width:48px;height:48px;border:1px solid var(--border);border-radius:10px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:20px;position:relative;overflow:hidden}
+.channel-icon::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--g);image-rendering:crisp-edges}
+.channel-card h3{font-size:15px;font-weight:600;color:var(--white);margin-bottom:6px}
+.channel-card p{font-size:12px;color:var(--white);opacity:.35;line-height:1.6}
+.channel-stat{font-family:var(--jb);font-size:10px;color:var(--white);opacity:.2;margin-top:12px}
+
+/* ═══ FOOTER ═══ */
+footer{border-top:1px solid var(--border);padding:48px;display:flex;justify-content:space-between;align-items:center}
+.footer-brand{font-weight:700;font-size:16px;color:var(--white)}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-size:13px;color:var(--white);opacity:.4;text-decoration:none;transition:opacity .2s}
+.footer-links a:hover{opacity:1}
+.footer-copy{font-size:12px;color:var(--white);opacity:.2}
+
+@media(max-width:768px){
+  nav{padding:14px 20px;flex-wrap:wrap;gap:12px}.nav-links{display:none}
+  .hero{padding:80px 20px 60px}.hero h1{font-size:36px}
+  .hero-cta{flex-direction:column;align-items:center}
+  .section{padding:48px 20px}
+  .featured-banner{height:140px}
+  .content-grid{grid-template-columns:1fr}
+  .latest-row{grid-template-columns:1fr}
+  .newsletter-form{flex-direction:column}
+  .channel-grid{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:16px;text-align:center;padding:32px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Gradient Bar                         -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="grad-bar"></div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Navigation                           -->
+<!-- Swap: logo text, link labels, CTA labels        -->
+<!-- ═══════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-logo"><img src="blackroad-logo.png" alt="BlackRoad" style="width:32px;height:32px;border-radius:50%"> BlackRoad Media</div>
+  <div class="nav-links">
+    <a href="#">Stories</a>
+    <a href="#">Podcast</a>
+    <a href="#">Video</a>
+    <a href="#">Newsletter</a>
+  </div>
+  <div style="display:flex;gap:10px">
+    <button class="btn-outline">RSS</button>
+    <button class="btn-solid">Subscribe</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Hero                                 -->
+<!-- Swap: badge, h1, subtitle, CTA labels           -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="hero-badge"><div class="hero-badge-dot"></div> [BADGE TEXT]</div>
+  <h1>[HEADLINE — max 8 words]</h1>
+  <p>[SUBTITLE — describes media division's focus]</p>
+  <div class="hero-cta">
+    <button class="btn-lg btn-lg-solid">[PRIMARY CTA]</button>
+    <button class="btn-lg btn-lg-outline">[SECONDARY CTA]</button>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Featured Story                       -->
+<!-- Outlined card. Gradient banner bg (decorative). -->
+<!-- Outlined shapes in banner (decorative).         -->
+<!-- Swap: tag, title, description, meta             -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-label">[SECTION LABEL]</div>
+  <div class="featured">
+    <div class="featured-banner">
+      <div class="featured-banner-bg"></div>
+      <div class="featured-banner-shape fbs-1"></div>
+      <div class="featured-banner-shape fbs-2"></div>
+      <div class="featured-banner-shape fbs-3"></div>
+    </div>
+    <div class="featured-body">
+      <div class="featured-tag">[TAG]</div>
+      <h2>[FEATURED TITLE]</h2>
+      <p>[FEATURED DESCRIPTION — two to three sentences]</p>
+      <div class="featured-meta">[META — date, read time, author]</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Category Filters                     -->
+<!-- Outlined pills. Active gets brighter border.    -->
+<!-- Swap: category names. Add/remove as needed.     -->
+<!-- ═══════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Content Grid (3-col)                 -->
+<!-- Outlined cards. Gradient thumbnail bg (faded).  -->
+<!-- Outlined shapes in thumb (decorative).          -->
+<!-- Swap: type, title, description, date            -->
+<!-- Use 3 or 6 cards.                               -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-label">[SECTION LABEL]</div>
+  <div class="section-title">[SECTION TITLE]</div>
+  <div class="cat-row">
+    <button class="cat-btn active">[ALL]</button>
+    <button class="cat-btn">[CATEGORY]</button>
+    <button class="cat-btn">[CATEGORY]</button>
+    <button class="cat-btn">[CATEGORY]</button>
+    <button class="cat-btn">[CATEGORY]</button>
+  </div>
+  <div class="content-grid">
+    <div class="content-card ct-1">
+      <div class="content-thumb"><div class="content-thumb-bg"></div><div class="content-thumb-shape cts-1"></div><div class="content-thumb-shape cts-2"></div></div>
+      <div class="content-body"><div class="content-type">[TYPE]</div><div class="content-title">[TITLE]</div><div class="content-desc">[DESCRIPTION]</div><div class="content-date">[DATE]</div></div>
+    </div>
+    <div class="content-card ct-2">
+      <div class="content-thumb"><div class="content-thumb-bg"></div><div class="content-thumb-shape cts-1"></div><div class="content-thumb-shape cts-2"></div></div>
+      <div class="content-body"><div class="content-type">[TYPE]</div><div class="content-title">[TITLE]</div><div class="content-desc">[DESCRIPTION]</div><div class="content-date">[DATE]</div></div>
+    </div>
+    <div class="content-card ct-3">
+      <div class="content-thumb"><div class="content-thumb-bg"></div><div class="content-thumb-shape cts-1"></div><div class="content-thumb-shape cts-2"></div></div>
+      <div class="content-body"><div class="content-type">[TYPE]</div><div class="content-title">[TITLE]</div><div class="content-desc">[DESCRIPTION]</div><div class="content-date">[DATE]</div></div>
+    </div>
+    <div class="content-card ct-4">
+      <div class="content-thumb"><div class="content-thumb-bg"></div><div class="content-thumb-shape cts-1"></div><div class="content-thumb-shape cts-2"></div></div>
+      <div class="content-body"><div class="content-type">[TYPE]</div><div class="content-title">[TITLE]</div><div class="content-desc">[DESCRIPTION]</div><div class="content-date">[DATE]</div></div>
+    </div>
+    <div class="content-card ct-5">
+      <div class="content-thumb"><div class="content-thumb-bg"></div><div class="content-thumb-shape cts-1"></div><div class="content-thumb-shape cts-2"></div></div>
+      <div class="content-body"><div class="content-type">[TYPE]</div><div class="content-title">[TITLE]</div><div class="content-desc">[DESCRIPTION]</div><div class="content-date">[DATE]</div></div>
+    </div>
+    <div class="content-card ct-6">
+      <div class="content-thumb"><div class="content-thumb-bg"></div><div class="content-thumb-shape cts-1"></div><div class="content-thumb-shape cts-2"></div></div>
+      <div class="content-body"><div class="content-type">[TYPE]</div><div class="content-title">[TITLE]</div><div class="content-desc">[DESCRIPTION]</div><div class="content-date">[DATE]</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Latest List                          -->
+<!-- Lined rows. No fills.                           -->
+<!-- Swap: type, title, description, date            -->
+<!-- Add/remove rows as needed.                      -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-label">[SECTION LABEL]</div>
+  <div class="section-title">[SECTION TITLE]</div>
+  <div class="latest-list">
+    <div class="latest-row"><div><div class="latest-type">[TYPE]</div><div class="latest-title">[TITLE]</div><div class="latest-desc">[DESCRIPTION]</div></div><div class="latest-date">[DATE]</div></div>
+    <div class="latest-row"><div><div class="latest-type">[TYPE]</div><div class="latest-title">[TITLE]</div><div class="latest-desc">[DESCRIPTION]</div></div><div class="latest-date">[DATE]</div></div>
+    <div class="latest-row"><div><div class="latest-type">[TYPE]</div><div class="latest-title">[TITLE]</div><div class="latest-desc">[DESCRIPTION]</div></div><div class="latest-date">[DATE]</div></div>
+    <div class="latest-row"><div><div class="latest-type">[TYPE]</div><div class="latest-title">[TITLE]</div><div class="latest-desc">[DESCRIPTION]</div></div><div class="latest-date">[DATE]</div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Channels Grid (3-col)                -->
+<!-- Outlined cards. Gradient icon bg (faded).       -->
+<!-- Swap: icon, title, description, stat            -->
+<!-- Always 3.                                       -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-label">[SECTION LABEL]</div>
+  <div class="section-title">[SECTION TITLE]</div>
+  <div class="section-desc">[SECTION DESCRIPTION]</div>
+  <div class="channel-grid">
+    <div class="channel-card"><div class="channel-icon">◈</div><h3>[CHANNEL NAME]</h3><p>[CHANNEL DESCRIPTION — one sentence]</p><div class="channel-stat">[STAT]</div></div>
+    <div class="channel-card"><div class="channel-icon">△</div><h3>[CHANNEL NAME]</h3><p>[CHANNEL DESCRIPTION]</p><div class="channel-stat">[STAT]</div></div>
+    <div class="channel-card"><div class="channel-icon">○</div><h3>[CHANNEL NAME]</h3><p>[CHANNEL DESCRIPTION]</p><div class="channel-stat">[STAT]</div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Newsletter Signup                    -->
+<!-- Outlined card with gradient top bar.            -->
+<!-- Outlined input. Solid button.                   -->
+<!-- Swap: title, description, placeholder, CTA      -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="newsletter">
+    <div class="newsletter-grad"></div>
+    <div class="newsletter-body">
+      <h3>[NEWSLETTER TITLE]</h3>
+      <p>[NEWSLETTER DESCRIPTION — one sentence]</p>
+      <div class="newsletter-form">
+        <input class="newsletter-input" type="email" placeholder="[PLACEHOLDER]">
+        <button class="newsletter-btn">[CTA]</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Footer                               -->
+<!-- Swap: brand, links                              -->
+<!-- ═══════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-brand">[BRAND]</div>
+  <div class="footer-links">
+    <a href="#">[LINK]</a>
+    <a href="#">[LINK]</a>
+    <a href="#">[LINK]</a>
+    <a href="#">[LINK]</a>
+  </div>
+  <div class="footer-copy">&copy; 2026 [BRAND]. All rights reserved.</div>
+</footer>
+<div class="grad-bar"></div>
+
+</body>
+</html>
