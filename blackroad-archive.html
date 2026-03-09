@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlackRoad Archive</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;shape-rendering:geometricPrecision}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;-webkit-text-stroke:.2px rgba(255,255,255,.1)}
+:root{
+  --g:linear-gradient(90deg,#FF6B2B,#FF2255,#CC00AA,#8844FF,#4488FF,#00D4FF);
+  --g135:linear-gradient(135deg,#FF6B2B,#FF2255,#CC00AA,#8844FF,#4488FF,#00D4FF);
+  --bg:#000;--white:#fff;--black:#000;--border:#1a1a1a;
+  --sg:'Space Grotesk',sans-serif;--jb:'JetBrains Mono',monospace;
+}
+body{background:var(--bg);color:var(--white);font-family:var(--sg);overflow-x:hidden}
+
+.grad-bar{height:4px;background:var(--g);image-rendering:crisp-edges}
+
+/* ═══ NAV ═══ */
+nav{display:flex;align-items:center;justify-content:space-between;padding:16px 48px;border-bottom:1px solid var(--border)}
+.nav-logo{font-weight:700;font-size:20px;color:var(--white);display:flex;align-items:center;gap:10px}
+.nav-links{display:flex;gap:32px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--white);opacity:.5;text-decoration:none;transition:opacity .2s}
+.nav-links a:hover{opacity:1}
+.btn-outline{padding:8px 20px;border:1px solid var(--border);border-radius:6px;background:transparent;color:var(--white);font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sg);transition:border-color .2s}
+.btn-outline:hover{border-color:#444}
+.btn-solid{padding:8px 20px;border:none;border-radius:6px;background:var(--white);color:var(--black);font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sg)}
+
+/* ═══ HERO ═══ */
+.hero{text-align:center;padding:120px 48px 80px;position:relative}
+.orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:.06;pointer-events:none}
+.orb-1{width:400px;height:400px;background:#FF2255;top:-150px;left:-5%}
+.orb-2{width:350px;height:350px;background:#4488FF;top:-100px;right:-5%}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border:1px solid var(--border);border-radius:20px;font-size:12px;font-weight:500;color:var(--white);margin-bottom:32px}
+.hero-badge-dot{width:8px;height:8px;border-radius:50%;background:var(--g135)}
+.hero h1{font-size:64px;font-weight:700;color:var(--white);line-height:1.08;margin-bottom:24px;max-width:780px;margin-left:auto;margin-right:auto;letter-spacing:-.02em}
+.hero p{font-size:18px;color:var(--white);opacity:.45;max-width:520px;margin:0 auto 48px;line-height:1.7}
+
+/* ═══ SEARCH BAR — outlined ═══ */
+.search-bar{max-width:560px;margin:0 auto;display:flex;gap:10px}
+.search-input{flex:1;padding:14px 20px;border:1px solid var(--border);border-radius:8px;background:transparent;color:var(--white);font-size:14px;font-family:var(--sg);outline:none;transition:border-color .2s}
+.search-input:focus{border-color:#333}
+.search-input::placeholder{color:var(--white);opacity:.2}
+.search-btn{padding:14px 28px;border:none;border-radius:8px;background:var(--white);color:var(--black);font-size:14px;font-weight:600;cursor:pointer;font-family:var(--sg)}
+
+/* ═══ SECTIONS ═══ */
+.section{max-width:1200px;margin:0 auto;padding:80px 48px}
+.section-label{font-family:var(--jb);font-size:10px;color:var(--white);opacity:.25;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.section-title{font-size:32px;font-weight:700;color:var(--white);margin-bottom:12px;letter-spacing:-.015em}
+.section-desc{font-size:14px;color:var(--white);opacity:.4;max-width:460px;margin-bottom:48px}
+
+/* ═══ COLLECTION GRID — 3-col outlined cards ═══ */
+.collection-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.collection-card{border:1px solid var(--border);border-radius:10px;padding:28px;position:relative;transition:border-color .2s}
+.collection-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--g);border-radius:10px 10px 0 0;image-rendering:crisp-edges}
+.collection-card:hover{border-color:#333}
+.collection-id{font-family:var(--jb);font-size:10px;color:var(--white);opacity:.15;letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px}
+.collection-name{font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px}
+.collection-desc{font-size:13px;color:var(--white);opacity:.4;line-height:1.7;margin-bottom:16px}
+.collection-meta{display:flex;gap:16px;font-family:var(--jb);font-size:10px;color:var(--white);opacity:.2}
+
+/* ═══ CATALOG — lined rows with large faded numbers ═══ */
+.catalog{border-top:1px solid var(--border)}
+.catalog-row{display:grid;grid-template-columns:48px 1fr 120px auto;gap:20px;padding:20px 0;border-bottom:1px solid var(--border);align-items:center}
+.catalog-num{font-size:28px;font-weight:700;color:var(--white);opacity:.06}
+.catalog-info h4{font-size:15px;font-weight:600;color:var(--white);margin-bottom:4px}
+.catalog-info p{font-size:12px;color:var(--white);opacity:.35}
+.catalog-type{font-family:var(--jb);font-size:10px;color:var(--white);opacity:.2;text-align:right}
+.catalog-tag{padding:3px 10px;border:1px solid var(--border);border-radius:4px;font-family:var(--jb);font-size:10px;color:var(--white);opacity:.3}
+
+/* ═══ TIMELINE — vertical with gradient dots ═══ */
+.timeline{position:relative;padding-left:32px}
+.timeline::before{content:'';position:absolute;left:11px;top:0;bottom:0;width:1px;background:var(--border)}
+.timeline-node{position:relative;padding:20px 0}
+.timeline-dot{position:absolute;left:-32px;top:24px;width:10px;height:10px;border-radius:50%}
+.timeline-dot.major{width:12px;height:12px;left:-33px;top:23px;background:var(--g135)}
+.timeline-dot.minor{border:1px solid var(--white);opacity:.2}
+.timeline-node h4{font-size:15px;font-weight:600;color:var(--white);margin-bottom:4px}
+.timeline-node p{font-size:12px;color:var(--white);opacity:.35;max-width:500px}
+.timeline-date{font-family:var(--jb);font-size:10px;color:var(--white);opacity:.15;margin-top:6px}
+
+/* ═══ STORAGE STATS — outlined card with lined rows ═══ */
+.storage-card{border:1px solid var(--border);border-radius:12px;overflow:hidden;position:relative}
+.storage-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--g);image-rendering:crisp-edges;z-index:1}
+.storage-header{padding:24px;border-bottom:1px solid var(--border)}
+.storage-header h3{font-size:18px;font-weight:700;color:var(--white);margin-bottom:4px}
+.storage-header p{font-size:12px;color:var(--white);opacity:.3}
+.storage-rows{padding:0}
+.storage-row{display:grid;grid-template-columns:1fr auto;gap:16px;padding:16px 24px;border-bottom:1px solid var(--border);align-items:center}
+.storage-row:last-child{border-bottom:none}
+.storage-label{font-size:13px;color:var(--white);opacity:.5}
+.storage-value{font-family:var(--jb);font-size:12px;color:var(--white);opacity:.3}
+.storage-bar-wrap{grid-column:1/-1;padding:0 24px 16px}
+.storage-bar{height:4px;border-radius:2px;background:var(--border);overflow:hidden}
+.storage-bar-fill{height:100%;border-radius:2px;background:var(--g);image-rendering:crisp-edges}
+
+/* ═══ FORMAT PILLS — outlined ═══ */
+.format-row{display:flex;gap:10px;flex-wrap:wrap}
+.format-pill{padding:8px 18px;border:1px solid var(--border);border-radius:20px;font-size:12px;font-weight:500;color:var(--white);opacity:.5;display:flex;align-items:center;gap:8px}
+.format-dot{width:6px;height:6px;border-radius:50%;background:var(--g135)}
+
+/* ═══ METRICS — 4-col lined ═══ */
+.metrics-strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.metric-cell{padding:28px 24px;border-right:1px solid var(--border)}
+.metric-cell:last-child{border-right:none}
+.metric-value{font-size:32px;font-weight:700;color:var(--white);margin-bottom:4px;letter-spacing:-.02em}
+.metric-label{font-family:var(--jb);font-size:10px;color:var(--white);opacity:.25;letter-spacing:.06em;text-transform:uppercase}
+
+/* ═══ FOOTER ═══ */
+footer{border-top:1px solid var(--border);padding:48px;display:flex;justify-content:space-between;align-items:center}
+.footer-brand{font-weight:700;font-size:16px;color:var(--white)}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-size:13px;color:var(--white);opacity:.4;text-decoration:none;transition:opacity .2s}
+.footer-links a:hover{opacity:1}
+.footer-copy{font-size:12px;color:var(--white);opacity:.2}
+
+@media(max-width:768px){
+  nav{padding:14px 20px;flex-wrap:wrap;gap:12px}.nav-links{display:none}
+  .hero{padding:80px 20px 60px}.hero h1{font-size:36px}
+  .search-bar{flex-direction:column}
+  .section{padding:48px 20px}
+  .collection-grid{grid-template-columns:1fr}
+  .catalog-row{grid-template-columns:32px 1fr auto}
+  .catalog-type{display:none}
+  .metrics-strip{grid-template-columns:repeat(2,1fr)}
+  footer{flex-direction:column;gap:16px;text-align:center;padding:32px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Gradient Bar                         -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="grad-bar"></div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Navigation                           -->
+<!-- Swap: logo text, link labels, CTA labels        -->
+<!-- ═══════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-logo"><img src="blackroad-logo.png" alt="BlackRoad" style="width:32px;height:32px;border-radius:50%"> BlackRoad Archive</div>
+  <div class="nav-links">
+    <a href="#">Collections</a>
+    <a href="#">Catalog</a>
+    <a href="#">Timeline</a>
+    <a href="#">API</a>
+  </div>
+  <div style="display:flex;gap:10px">
+    <button class="btn-outline">Contribute</button>
+    <button class="btn-solid">Browse</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Hero + Search                        -->
+<!-- Swap: badge, h1, subtitle, placeholder, CTA     -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="hero-badge"><div class="hero-badge-dot"></div> [BADGE TEXT]</div>
+  <h1>[HEADLINE — max 8 words]</h1>
+  <p>[SUBTITLE — describes archive division's purpose]</p>
+  <div class="search-bar">
+    <input class="search-input" type="text" placeholder="[SEARCH PLACEHOLDER]">
+    <button class="search-btn">[CTA]</button>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Metrics Strip (4-col)                -->
+<!-- Lined cells. No fills.                          -->
+<!-- Swap: values + labels                           -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="section" style="padding-bottom:0">
+  <div class="metrics-strip">
+    <div class="metric-cell"><div class="metric-value">[VALUE]</div><div class="metric-label">[LABEL]</div></div>
+    <div class="metric-cell"><div class="metric-value">[VALUE]</div><div class="metric-label">[LABEL]</div></div>
+    <div class="metric-cell"><div class="metric-value">[VALUE]</div><div class="metric-label">[LABEL]</div></div>
+    <div class="metric-cell"><div class="metric-value">[VALUE]</div><div class="metric-label">[LABEL]</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Collection Grid (3-col)              -->
+<!-- Outlined cards. Gradient top accent bar.        -->
+<!-- Swap: id, name, desc, meta. Use 3 or 6.        -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-label">[SECTION LABEL]</div>
+  <div class="section-title">[SECTION TITLE]</div>
+  <div class="section-desc">[SECTION DESCRIPTION]</div>
+  <div class="collection-grid">
+    <div class="collection-card">
+      <div class="collection-id">[ID]</div>
+      <div class="collection-name">[COLLECTION NAME]</div>
+      <div class="collection-desc">[COLLECTION DESCRIPTION]</div>
+      <div class="collection-meta"><span>[ITEMS]</span><span>[SIZE]</span></div>
+    </div>
+    <div class="collection-card">
+      <div class="collection-id">[ID]</div>
+      <div class="collection-name">[COLLECTION NAME]</div>
+      <div class="collection-desc">[COLLECTION DESCRIPTION]</div>
+      <div class="collection-meta"><span>[ITEMS]</span><span>[SIZE]</span></div>
+    </div>
+    <div class="collection-card">
+      <div class="collection-id">[ID]</div>
+      <div class="collection-name">[COLLECTION NAME]</div>
+      <div class="collection-desc">[COLLECTION DESCRIPTION]</div>
+      <div class="collection-meta"><span>[ITEMS]</span><span>[SIZE]</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Catalog List                         -->
+<!-- Lined rows with large faded entry numbers.      -->
+<!-- Outlined tags.                                  -->
+<!-- Swap: num, title, desc, type, tag. Add/remove.  -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-label">[SECTION LABEL]</div>
+  <div class="section-title">[SECTION TITLE]</div>
+  <div class="catalog">
+    <div class="catalog-row"><div class="catalog-num">01</div><div class="catalog-info"><h4>[ENTRY TITLE]</h4><p>[ENTRY DESCRIPTION]</p></div><div class="catalog-type">[TYPE]</div><div class="catalog-tag">[TAG]</div></div>
+    <div class="catalog-row"><div class="catalog-num">02</div><div class="catalog-info"><h4>[ENTRY TITLE]</h4><p>[ENTRY DESCRIPTION]</p></div><div class="catalog-type">[TYPE]</div><div class="catalog-tag">[TAG]</div></div>
+    <div class="catalog-row"><div class="catalog-num">03</div><div class="catalog-info"><h4>[ENTRY TITLE]</h4><p>[ENTRY DESCRIPTION]</p></div><div class="catalog-type">[TYPE]</div><div class="catalog-tag">[TAG]</div></div>
+    <div class="catalog-row"><div class="catalog-num">04</div><div class="catalog-info"><h4>[ENTRY TITLE]</h4><p>[ENTRY DESCRIPTION]</p></div><div class="catalog-type">[TYPE]</div><div class="catalog-tag">[TAG]</div></div>
+    <div class="catalog-row"><div class="catalog-num">05</div><div class="catalog-info"><h4>[ENTRY TITLE]</h4><p>[ENTRY DESCRIPTION]</p></div><div class="catalog-type">[TYPE]</div><div class="catalog-tag">[TAG]</div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Storage Card                         -->
+<!-- Outlined card with gradient top bar.            -->
+<!-- Lined stat rows + gradient usage bar.           -->
+<!-- Swap: title, desc, labels, values, bar width.   -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-label">[SECTION LABEL]</div>
+  <div class="storage-card">
+    <div class="storage-header"><h3>[STORAGE TITLE]</h3><p>[STORAGE DESCRIPTION]</p></div>
+    <div class="storage-rows">
+      <div class="storage-row"><div class="storage-label">[LABEL]</div><div class="storage-value">[VALUE]</div></div>
+      <div class="storage-row"><div class="storage-label">[LABEL]</div><div class="storage-value">[VALUE]</div></div>
+      <div class="storage-row"><div class="storage-label">[LABEL]</div><div class="storage-value">[VALUE]</div></div>
+    </div>
+    <div class="storage-bar-wrap"><div class="storage-bar"><div class="storage-bar-fill" style="width:65%"></div></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Timeline (vertical)                  -->
+<!-- Gradient dots = major events.                   -->
+<!-- Outlined dots = minor events.                   -->
+<!-- Swap: titles, descriptions, dates. Add/remove.  -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-label">[SECTION LABEL]</div>
+  <div class="section-title">[SECTION TITLE]</div>
+  <div class="timeline">
+    <div class="timeline-node"><div class="timeline-dot major"></div><h4>[EVENT TITLE]</h4><p>[EVENT DESCRIPTION]</p><div class="timeline-date">[DATE]</div></div>
+    <div class="timeline-node"><div class="timeline-dot minor"></div><h4>[EVENT TITLE]</h4><p>[EVENT DESCRIPTION]</p><div class="timeline-date">[DATE]</div></div>
+    <div class="timeline-node"><div class="timeline-dot major"></div><h4>[EVENT TITLE]</h4><p>[EVENT DESCRIPTION]</p><div class="timeline-date">[DATE]</div></div>
+    <div class="timeline-node"><div class="timeline-dot minor"></div><h4>[EVENT TITLE]</h4><p>[EVENT DESCRIPTION]</p><div class="timeline-date">[DATE]</div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Supported Formats (outlined pills)   -->
+<!-- Swap: format names. Add/remove pills.           -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-label">[SECTION LABEL]</div>
+  <div class="section-title">[SECTION TITLE]</div>
+  <div class="format-row">
+    <div class="format-pill"><div class="format-dot"></div> [FORMAT]</div>
+    <div class="format-pill"><div class="format-dot"></div> [FORMAT]</div>
+    <div class="format-pill"><div class="format-dot"></div> [FORMAT]</div>
+    <div class="format-pill"><div class="format-dot"></div> [FORMAT]</div>
+    <div class="format-pill"><div class="format-dot"></div> [FORMAT]</div>
+    <div class="format-pill"><div class="format-dot"></div> [FORMAT]</div>
+    <div class="format-pill"><div class="format-dot"></div> [FORMAT]</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Footer                               -->
+<!-- Swap: brand, links                              -->
+<!-- ═══════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-brand">[BRAND]</div>
+  <div class="footer-links">
+    <a href="#">[LINK]</a>
+    <a href="#">[LINK]</a>
+    <a href="#">[LINK]</a>
+    <a href="#">[LINK]</a>
+  </div>
+  <div class="footer-copy">&copy; 2026 [BRAND]. All rights reserved.</div>
+</footer>
+<div class="grad-bar"></div>
+
+</body>
+</html>
