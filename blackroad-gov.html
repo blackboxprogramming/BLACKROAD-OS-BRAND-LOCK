@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlackRoad Gov</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;shape-rendering:geometricPrecision}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;-webkit-text-stroke:.2px rgba(255,255,255,.1)}
+:root{
+  --g:linear-gradient(90deg,#FF6B2B,#FF2255,#CC00AA,#8844FF,#4488FF,#00D4FF);
+  --g135:linear-gradient(135deg,#FF6B2B,#FF2255,#CC00AA,#8844FF,#4488FF,#00D4FF);
+  --bg:#000;--white:#fff;--black:#000;--border:#1a1a1a;
+  --sg:'Space Grotesk',sans-serif;--jb:'JetBrains Mono',monospace;
+}
+body{background:var(--bg);color:var(--white);font-family:var(--sg);overflow-x:hidden}
+
+.grad-bar{height:4px;background:var(--g);image-rendering:crisp-edges}
+
+/* ═══ NAV ═══ */
+nav{display:flex;align-items:center;justify-content:space-between;padding:16px 48px;border-bottom:1px solid var(--border)}
+.nav-logo{font-weight:700;font-size:20px;color:var(--white);display:flex;align-items:center;gap:10px}
+.nav-links{display:flex;gap:32px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--white);opacity:.5;text-decoration:none;transition:opacity .2s}
+.nav-links a:hover{opacity:1}
+.btn-outline{padding:8px 20px;border:1px solid var(--border);border-radius:6px;background:transparent;color:var(--white);font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sg);transition:border-color .2s}
+.btn-outline:hover{border-color:#444}
+.btn-solid{padding:8px 20px;border:none;border-radius:6px;background:var(--white);color:var(--black);font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sg)}
+
+/* ═══ HERO ═══ */
+.hero{text-align:center;padding:120px 48px 80px;position:relative}
+.orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:.06;pointer-events:none}
+.orb-1{width:400px;height:400px;background:#FF2255;top:-150px;left:-5%}
+.orb-2{width:350px;height:350px;background:#4488FF;top:-100px;right:-5%}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border:1px solid var(--border);border-radius:20px;font-size:12px;font-weight:500;color:var(--white);margin-bottom:32px}
+.hero-badge-dot{width:8px;height:8px;border-radius:50%;background:var(--g135)}
+.hero h1{font-size:64px;font-weight:700;color:var(--white);line-height:1.08;margin-bottom:24px;max-width:780px;margin-left:auto;margin-right:auto;letter-spacing:-.02em}
+.hero p{font-size:18px;color:var(--white);opacity:.45;max-width:520px;margin:0 auto 48px;line-height:1.7}
+.hero-cta{display:flex;gap:16px;justify-content:center}
+.btn-lg{padding:14px 36px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;font-family:var(--sg)}
+.btn-lg-solid{background:var(--white);color:var(--black);border:none}
+.btn-lg-outline{background:transparent;color:var(--white);border:1px solid var(--border);transition:border-color .2s}
+.btn-lg-outline:hover{border-color:#444}
+
+/* ═══ SECTIONS ═══ */
+.section{max-width:1200px;margin:0 auto;padding:80px 48px}
+.section-label{font-family:var(--jb);font-size:10px;color:var(--white);opacity:.25;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.section-title{font-size:32px;font-weight:700;color:var(--white);margin-bottom:12px;letter-spacing:-.015em}
+.section-desc{font-size:14px;color:var(--white);opacity:.4;max-width:460px;margin-bottom:48px}
+
+/* ═══ CLEARANCE LEVELS — lined rows with gradient bar ═══ */
+.clearance-list{border-top:1px solid var(--border)}
+.clearance-row{display:grid;grid-template-columns:80px 1fr auto;gap:24px;padding:22px 0;border-bottom:1px solid var(--border);align-items:center}
+.clearance-level{font-family:var(--jb);font-size:11px;color:var(--white);opacity:.2;letter-spacing:.04em;text-transform:uppercase}
+.clearance-info h4{font-size:15px;font-weight:600;color:var(--white);margin-bottom:4px}
+.clearance-info p{font-size:12px;color:var(--white);opacity:.35}
+.clearance-bar{width:60px;height:4px;border-radius:2px;background:var(--g);image-rendering:crisp-edges}
+.clearance-bar.mid{opacity:.5}
+.clearance-bar.low{opacity:.2}
+
+/* ═══ COMPLIANCE GRID — 3-col outlined cards ═══ */
+.compliance-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.compliance-card{border:1px solid var(--border);border-radius:10px;padding:28px;position:relative;transition:border-color .2s}
+.compliance-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--g);border-radius:10px 10px 0 0;image-rendering:crisp-edges}
+.compliance-card:hover{border-color:#333}
+.compliance-code{font-family:var(--jb);font-size:10px;color:var(--white);opacity:.2;letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px}
+.compliance-name{font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px}
+.compliance-desc{font-size:13px;color:var(--white);opacity:.4;line-height:1.7;margin-bottom:16px}
+.compliance-status{display:flex;align-items:center;gap:8px;font-family:var(--jb);font-size:10px;color:var(--white);opacity:.25}
+.compliance-dot{width:6px;height:6px;border-radius:50%;background:var(--g135)}
+
+/* ═══ AGENCIES — outlined pills ═══ */
+.agency-row{display:flex;gap:10px;flex-wrap:wrap}
+.agency-pill{padding:8px 18px;border:1px solid var(--border);border-radius:20px;font-size:12px;font-weight:500;color:var(--white);opacity:.5;display:flex;align-items:center;gap:8px}
+.agency-dot{width:6px;height:6px;border-radius:50%;background:var(--g135)}
+
+/* ═══ CONTRACTS TABLE — lined rows ═══ */
+.contracts{border-top:1px solid var(--border)}
+.contract-row{display:grid;grid-template-columns:1fr 160px 120px auto;gap:20px;padding:18px 0;border-bottom:1px solid var(--border);align-items:center}
+.contract-name{font-size:14px;font-weight:600;color:var(--white)}
+.contract-agency{font-family:var(--jb);font-size:11px;color:var(--white);opacity:.2}
+.contract-value{font-family:var(--jb);font-size:11px;color:var(--white);opacity:.4}
+.contract-tag{padding:3px 10px;border:1px solid var(--border);border-radius:4px;font-family:var(--jb);font-size:10px;color:var(--white);opacity:.3}
+
+/* ═══ TIMELINE — vertical with gradient dots ═══ */
+.timeline{position:relative;padding-left:32px}
+.timeline::before{content:'';position:absolute;left:11px;top:0;bottom:0;width:1px;background:var(--border)}
+.timeline-node{position:relative;padding:20px 0}
+.timeline-dot{position:absolute;left:-32px;top:24px;width:10px;height:10px;border-radius:50%}
+.timeline-dot.major{width:12px;height:12px;left:-33px;top:23px;background:var(--g135)}
+.timeline-dot.minor{border:1px solid var(--white);opacity:.2}
+.timeline-node h4{font-size:15px;font-weight:600;color:var(--white);margin-bottom:4px}
+.timeline-node p{font-size:12px;color:var(--white);opacity:.35;max-width:500px}
+.timeline-date{font-family:var(--jb);font-size:10px;color:var(--white);opacity:.15;margin-top:6px}
+
+/* ═══ METRICS — 4-col lined ═══ */
+.metrics-strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.metric-cell{padding:28px 24px;border-right:1px solid var(--border)}
+.metric-cell:last-child{border-right:none}
+.metric-value{font-size:32px;font-weight:700;color:var(--white);margin-bottom:4px;letter-spacing:-.02em}
+.metric-label{font-family:var(--jb);font-size:10px;color:var(--white);opacity:.25;letter-spacing:.06em;text-transform:uppercase}
+
+/* ═══ FOOTER ═══ */
+footer{border-top:1px solid var(--border);padding:48px;display:flex;justify-content:space-between;align-items:center}
+.footer-brand{font-weight:700;font-size:16px;color:var(--white)}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-size:13px;color:var(--white);opacity:.4;text-decoration:none;transition:opacity .2s}
+.footer-links a:hover{opacity:1}
+.footer-copy{font-size:12px;color:var(--white);opacity:.2}
+
+@media(max-width:768px){
+  nav{padding:14px 20px;flex-wrap:wrap;gap:12px}.nav-links{display:none}
+  .hero{padding:80px 20px 60px}.hero h1{font-size:36px}
+  .hero-cta{flex-direction:column;align-items:center}
+  .section{padding:48px 20px}
+  .compliance-grid{grid-template-columns:1fr}
+  .clearance-row{grid-template-columns:60px 1fr auto}
+  .contract-row{grid-template-columns:1fr auto}
+  .contract-agency,.contract-value{display:none}
+  .metrics-strip{grid-template-columns:repeat(2,1fr)}
+  footer{flex-direction:column;gap:16px;text-align:center;padding:32px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Gradient Bar                         -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="grad-bar"></div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Navigation                           -->
+<!-- Swap: logo text, link labels, CTA labels        -->
+<!-- ═══════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-logo"><img src="blackroad-logo.png" alt="BlackRoad" style="width:32px;height:32px;border-radius:50%"> BlackRoad Gov</div>
+  <div class="nav-links">
+    <a href="#">Solutions</a>
+    <a href="#">Compliance</a>
+    <a href="#">Contracts</a>
+    <a href="#">Contact</a>
+  </div>
+  <div style="display:flex;gap:10px">
+    <button class="btn-outline">Portal</button>
+    <button class="btn-solid">Request Brief</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Hero                                 -->
+<!-- Swap: badge, h1, subtitle, CTA labels           -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="hero-badge"><div class="hero-badge-dot"></div> [BADGE TEXT]</div>
+  <h1>[HEADLINE — max 8 words]</h1>
+  <p>[SUBTITLE — describes gov division's focus]</p>
+  <div class="hero-cta">
+    <button class="btn-lg btn-lg-solid">[PRIMARY CTA]</button>
+    <button class="btn-lg btn-lg-outline">[SECONDARY CTA]</button>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Metrics Strip (4-col)                -->
+<!-- Lined cells. No fills.                          -->
+<!-- Swap: values + labels                           -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="section" style="padding-bottom:0">
+  <div class="metrics-strip">
+    <div class="metric-cell"><div class="metric-value">[VALUE]</div><div class="metric-label">[LABEL]</div></div>
+    <div class="metric-cell"><div class="metric-value">[VALUE]</div><div class="metric-label">[LABEL]</div></div>
+    <div class="metric-cell"><div class="metric-value">[VALUE]</div><div class="metric-label">[LABEL]</div></div>
+    <div class="metric-cell"><div class="metric-value">[VALUE]</div><div class="metric-label">[LABEL]</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Clearance Levels                     -->
+<!-- Lined rows. Gradient bar at full/mid/low        -->
+<!-- opacity = clearance differentiation.            -->
+<!-- Swap: level, title, desc. Add/remove rows.      -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-label">[SECTION LABEL]</div>
+  <div class="section-title">[SECTION TITLE]</div>
+  <div class="clearance-list">
+    <div class="clearance-row"><div class="clearance-level">[LEVEL]</div><div class="clearance-info"><h4>[CLEARANCE TITLE]</h4><p>[CLEARANCE DESCRIPTION]</p></div><div class="clearance-bar"></div></div>
+    <div class="clearance-row"><div class="clearance-level">[LEVEL]</div><div class="clearance-info"><h4>[CLEARANCE TITLE]</h4><p>[CLEARANCE DESCRIPTION]</p></div><div class="clearance-bar mid"></div></div>
+    <div class="clearance-row"><div class="clearance-level">[LEVEL]</div><div class="clearance-info"><h4>[CLEARANCE TITLE]</h4><p>[CLEARANCE DESCRIPTION]</p></div><div class="clearance-bar low"></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Compliance Grid (3-col)              -->
+<!-- Outlined cards. Gradient top accent bar.        -->
+<!-- Gradient dot = certified status.                -->
+<!-- Swap: code, name, desc, status. Use 3 or 6.    -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-label">[SECTION LABEL]</div>
+  <div class="section-title">[SECTION TITLE]</div>
+  <div class="section-desc">[SECTION DESCRIPTION]</div>
+  <div class="compliance-grid">
+    <div class="compliance-card">
+      <div class="compliance-code">[CODE]</div>
+      <div class="compliance-name">[FRAMEWORK NAME]</div>
+      <div class="compliance-desc">[FRAMEWORK DESCRIPTION]</div>
+      <div class="compliance-status"><div class="compliance-dot"></div> [STATUS]</div>
+    </div>
+    <div class="compliance-card">
+      <div class="compliance-code">[CODE]</div>
+      <div class="compliance-name">[FRAMEWORK NAME]</div>
+      <div class="compliance-desc">[FRAMEWORK DESCRIPTION]</div>
+      <div class="compliance-status"><div class="compliance-dot"></div> [STATUS]</div>
+    </div>
+    <div class="compliance-card">
+      <div class="compliance-code">[CODE]</div>
+      <div class="compliance-name">[FRAMEWORK NAME]</div>
+      <div class="compliance-desc">[FRAMEWORK DESCRIPTION]</div>
+      <div class="compliance-status"><div class="compliance-dot"></div> [STATUS]</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Contracts Table                      -->
+<!-- Lined rows. Outlined tags.                      -->
+<!-- Swap: name, agency, value, tag. Add/remove.     -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-label">[SECTION LABEL]</div>
+  <div class="section-title">[SECTION TITLE]</div>
+  <div class="contracts">
+    <div class="contract-row"><div class="contract-name">[CONTRACT NAME]</div><div class="contract-agency">[AGENCY]</div><div class="contract-value">[VALUE]</div><div class="contract-tag">[TAG]</div></div>
+    <div class="contract-row"><div class="contract-name">[CONTRACT NAME]</div><div class="contract-agency">[AGENCY]</div><div class="contract-value">[VALUE]</div><div class="contract-tag">[TAG]</div></div>
+    <div class="contract-row"><div class="contract-name">[CONTRACT NAME]</div><div class="contract-agency">[AGENCY]</div><div class="contract-value">[VALUE]</div><div class="contract-tag">[TAG]</div></div>
+    <div class="contract-row"><div class="contract-name">[CONTRACT NAME]</div><div class="contract-agency">[AGENCY]</div><div class="contract-value">[VALUE]</div><div class="contract-tag">[TAG]</div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Agencies (outlined pills)            -->
+<!-- Swap: agency names. Add/remove pills.           -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-label">[SECTION LABEL]</div>
+  <div class="section-title">[SECTION TITLE]</div>
+  <div class="agency-row">
+    <div class="agency-pill"><div class="agency-dot"></div> [AGENCY]</div>
+    <div class="agency-pill"><div class="agency-dot"></div> [AGENCY]</div>
+    <div class="agency-pill"><div class="agency-dot"></div> [AGENCY]</div>
+    <div class="agency-pill"><div class="agency-dot"></div> [AGENCY]</div>
+    <div class="agency-pill"><div class="agency-dot"></div> [AGENCY]</div>
+    <div class="agency-pill"><div class="agency-dot"></div> [AGENCY]</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Timeline (vertical)                  -->
+<!-- Gradient dots = major events.                   -->
+<!-- Outlined dots = minor events.                   -->
+<!-- Swap: titles, descriptions, dates. Add/remove.  -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-label">[SECTION LABEL]</div>
+  <div class="section-title">[SECTION TITLE]</div>
+  <div class="timeline">
+    <div class="timeline-node"><div class="timeline-dot major"></div><h4>[EVENT TITLE]</h4><p>[EVENT DESCRIPTION]</p><div class="timeline-date">[DATE]</div></div>
+    <div class="timeline-node"><div class="timeline-dot minor"></div><h4>[EVENT TITLE]</h4><p>[EVENT DESCRIPTION]</p><div class="timeline-date">[DATE]</div></div>
+    <div class="timeline-node"><div class="timeline-dot major"></div><h4>[EVENT TITLE]</h4><p>[EVENT DESCRIPTION]</p><div class="timeline-date">[DATE]</div></div>
+    <div class="timeline-node"><div class="timeline-dot minor"></div><h4>[EVENT TITLE]</h4><p>[EVENT DESCRIPTION]</p><div class="timeline-date">[DATE]</div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Footer                               -->
+<!-- Swap: brand, links                              -->
+<!-- ═══════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-brand">[BRAND]</div>
+  <div class="footer-links">
+    <a href="#">[LINK]</a>
+    <a href="#">[LINK]</a>
+    <a href="#">[LINK]</a>
+    <a href="#">[LINK]</a>
+  </div>
+  <div class="footer-copy">&copy; 2026 [BRAND]. All rights reserved.</div>
+</footer>
+<div class="grad-bar"></div>
+
+</body>
+</html>
