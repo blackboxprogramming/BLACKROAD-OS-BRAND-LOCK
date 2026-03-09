@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlackRoad AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;-webkit-text-stroke:.2px rgba(255,255,255,.1)}
+*{shape-rendering:geometricPrecision}
+:root{
+  --g:linear-gradient(90deg,#FF6B2B,#FF2255,#CC00AA,#8844FF,#4488FF,#00D4FF);
+  --g135:linear-gradient(135deg,#FF6B2B,#FF2255,#CC00AA,#8844FF,#4488FF,#00D4FF);
+  --bg:#000;--white:#fff;--black:#000;--border:#1a1a1a;
+  --sg:'Space Grotesk',sans-serif;--jb:'JetBrains Mono',monospace;
+}
+body{background:var(--bg);color:var(--white);font-family:var(--sg);overflow-x:hidden}
+
+/* ═══ GRAD BAR ═══ */
+.grad-bar{height:4px;background:var(--g);image-rendering:crisp-edges}
+
+/* ═══ NAV — outlined container, white text only ═══ */
+nav{display:flex;align-items:center;justify-content:space-between;padding:16px 48px;border-bottom:1px solid var(--border)}
+.nav-logo{font-weight:700;font-size:20px;color:var(--white);display:flex;align-items:center;gap:10px}
+.nav-logo-mark{width:28px;height:4px;border-radius:2px;background:var(--g)}
+.nav-links{display:flex;gap:32px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--white);opacity:.5;text-decoration:none;transition:opacity .2s}
+.nav-links a:hover{opacity:1}
+.nav-cta{display:flex;gap:10px}
+.btn-outline{padding:8px 20px;border:1px solid var(--border);border-radius:6px;background:transparent;color:var(--white);font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sg);transition:border-color .2s}
+.btn-outline:hover{border-color:#444}
+.btn-solid{padding:8px 20px;border:none;border-radius:6px;background:var(--white);color:var(--black);font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sg)}
+
+/* ═══ HERO — decorative orbs (gradient), text white ═══ */
+.hero{text-align:center;padding:120px 48px 80px;position:relative}
+.orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:.06;pointer-events:none}
+.orb-1{width:400px;height:400px;background:#CC00AA;top:-150px;left:-5%}
+.orb-2{width:350px;height:350px;background:#4488FF;top:-100px;right:-5%}
+.orb-3{width:200px;height:200px;background:#FF2255;bottom:-100px;left:30%}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border:1px solid var(--border);border-radius:20px;font-size:12px;font-weight:500;color:var(--white);margin-bottom:32px}
+.hero-badge-dot{width:8px;height:8px;border-radius:50%;background:var(--g135)}
+.hero h1{font-size:64px;font-weight:700;color:var(--white);line-height:1.08;margin-bottom:24px;max-width:780px;margin-left:auto;margin-right:auto;letter-spacing:-.02em}
+.hero p{font-size:18px;color:var(--white);opacity:.45;max-width:500px;margin:0 auto 48px;line-height:1.7}
+.hero-cta{display:flex;gap:16px;justify-content:center}
+.btn-lg{padding:14px 36px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;font-family:var(--sg)}
+.btn-lg-solid{background:var(--white);color:var(--black);border:none}
+.btn-lg-outline{background:transparent;color:var(--white);border:1px solid var(--border);transition:border-color .2s}
+.btn-lg-outline:hover{border-color:#444}
+
+/* ═══ CAPABILITIES — outlined cards, gradient accent bars ═══ */
+.section{max-width:1200px;margin:0 auto;padding:80px 48px}
+.section-label{font-family:var(--jb);font-size:10px;color:var(--white);opacity:.25;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.section-title{font-size:32px;font-weight:700;color:var(--white);margin-bottom:12px;letter-spacing:-.015em}
+.section-desc{font-size:14px;color:var(--white);opacity:.4;max-width:460px;margin-bottom:48px}
+
+.cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cap-card{border:1px solid var(--border);border-radius:10px;padding:28px;transition:border-color .2s}
+.cap-card:hover{border-color:#333}
+.cap-accent{width:32px;height:3px;border-radius:1px;background:var(--g);margin-bottom:20px;image-rendering:crisp-edges}
+.cap-card h3{font-size:15px;font-weight:600;color:var(--white);margin-bottom:8px}
+.cap-card p{font-size:13px;color:var(--white);opacity:.4;line-height:1.7}
+
+/* ═══ MODELS — lined rows (border-bottom), no fill ═══ */
+.model-list{border-top:1px solid var(--border)}
+.model-row{display:grid;grid-template-columns:1fr 1fr auto;gap:24px;align-items:center;padding:20px 0;border-bottom:1px solid var(--border)}
+.model-name{font-size:15px;font-weight:600;color:var(--white)}
+.model-desc{font-size:13px;color:var(--white);opacity:.4}
+.model-badge{padding:4px 10px;border:1px solid var(--border);border-radius:4px;font-family:var(--jb);font-size:10px;color:var(--white);opacity:.5}
+
+/* ═══ METRICS — outlined containers ═══ */
+.metrics-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:48px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.metric{text-align:center}
+.metric-val{font-size:36px;font-weight:700;color:var(--white)}
+.metric-label{font-family:var(--jb);font-size:10px;color:var(--white);opacity:.3;letter-spacing:.08em;text-transform:uppercase;margin-top:4px}
+
+/* ═══ ARCHITECTURE — outlined card with gradient top bar ═══ */
+.arch-card{border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.arch-grad{height:3px;background:var(--g)}
+.arch-body{padding:32px;display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.arch-col h3{font-size:16px;font-weight:600;color:var(--white);margin-bottom:16px}
+.arch-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
+.arch-item:last-child{border-bottom:none}
+.arch-dot{width:6px;height:6px;border-radius:50%;background:var(--g135);flex-shrink:0}
+.arch-item span{font-size:13px;color:var(--white);opacity:.5}
+
+/* ═══ CTA — outlined box with gradient top ═══ */
+.cta{text-align:center;padding:80px 48px}
+.cta-box{max-width:700px;margin:0 auto;padding:64px;border:1px solid var(--border);border-radius:16px;position:relative;overflow:hidden}
+.cta-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--g)}
+.cta-box h2{font-size:28px;font-weight:700;color:var(--white);margin-bottom:12px}
+.cta-box p{font-size:14px;color:var(--white);opacity:.4;margin-bottom:32px;max-width:400px;margin-left:auto;margin-right:auto}
+
+/* ═══ FOOTER — lined (border-top) ═══ */
+footer{border-top:1px solid var(--border);padding:48px;display:flex;justify-content:space-between;align-items:center}
+.footer-brand{font-weight:700;font-size:16px;color:var(--white)}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-size:13px;color:var(--white);opacity:.4;text-decoration:none;transition:opacity .2s}
+.footer-links a:hover{opacity:1}
+.footer-copy{font-size:12px;color:var(--white);opacity:.2}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:768px){
+  nav{padding:14px 20px;flex-wrap:wrap;gap:12px}.nav-links{display:none}
+  .hero{padding:80px 20px 60px}.hero h1{font-size:36px}
+  .hero-cta{flex-direction:column;align-items:center}
+  .section{padding:48px 20px}
+  .cap-grid{grid-template-columns:1fr}
+  .model-row{grid-template-columns:1fr;gap:8px}
+  .metrics-bar{grid-template-columns:repeat(2,1fr);gap:24px}
+  .arch-body{grid-template-columns:1fr}
+  .cta{padding:48px 20px}
+  footer{flex-direction:column;gap:16px;text-align:center;padding:32px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Gradient Bar (top)                   -->
+<!-- Always present. Never remove.                   -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="grad-bar"></div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Navigation                           -->
+<!-- Outlined (border-bottom). White text only.      -->
+<!-- Swap: logo text, link labels, CTA labels.       -->
+<!-- ═══════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-logo"><div class="nav-logo-mark"></div> BlackRoad AI</div>
+  <div class="nav-links">
+    <a href="#">Models</a>
+    <a href="#">Research</a>
+    <a href="#">API</a>
+    <a href="#">Docs</a>
+  </div>
+  <div class="nav-cta">
+    <button class="btn-outline">Sign In</button>
+    <button class="btn-solid">Get Access</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Hero                                 -->
+<!-- Decorative orbs = gradient colors.              -->
+<!-- Badge = outlined pill with gradient dot.         -->
+<!-- Swap: badge text, h1, subtitle, CTA labels.     -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="hero-badge"><div class="hero-badge-dot"></div> [BADGE TEXT]</div>
+  <h1>[HEADLINE — max 8 words]</h1>
+  <p>[SUBTITLE — one to two sentences describing this division]</p>
+  <div class="hero-cta">
+    <button class="btn-lg btn-lg-solid">[PRIMARY CTA]</button>
+    <button class="btn-lg btn-lg-outline">[SECONDARY CTA]</button>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Capabilities Grid (3-col)            -->
+<!-- Outlined cards. Gradient accent bar (decorative).-->
+<!-- Swap: section label, title, desc, card content. -->
+<!-- Use 3, 6, or 9 cards. Never 1, 2, 4, 5.        -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-label">[SECTION LABEL]</div>
+  <div class="section-title">[SECTION TITLE]</div>
+  <div class="section-desc">[SECTION DESCRIPTION]</div>
+  <div class="cap-grid">
+    <div class="cap-card"><div class="cap-accent"></div><h3>[CARD TITLE]</h3><p>[CARD DESCRIPTION — two sentences max]</p></div>
+    <div class="cap-card"><div class="cap-accent"></div><h3>[CARD TITLE]</h3><p>[CARD DESCRIPTION — two sentences max]</p></div>
+    <div class="cap-card"><div class="cap-accent"></div><h3>[CARD TITLE]</h3><p>[CARD DESCRIPTION — two sentences max]</p></div>
+    <div class="cap-card"><div class="cap-accent"></div><h3>[CARD TITLE]</h3><p>[CARD DESCRIPTION — two sentences max]</p></div>
+    <div class="cap-card"><div class="cap-accent"></div><h3>[CARD TITLE]</h3><p>[CARD DESCRIPTION — two sentences max]</p></div>
+    <div class="cap-card"><div class="cap-accent"></div><h3>[CARD TITLE]</h3><p>[CARD DESCRIPTION — two sentences max]</p></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Model / Item List                    -->
+<!-- Lined rows (border-top + border-bottom).        -->
+<!-- Outlined badge. No filled backgrounds.          -->
+<!-- Swap: row content. Add/remove rows as needed.   -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-label">[SECTION LABEL]</div>
+  <div class="section-title">[SECTION TITLE]</div>
+  <div class="section-desc">[SECTION DESCRIPTION]</div>
+  <div class="model-list">
+    <div class="model-row"><span class="model-name">[ITEM NAME]</span><span class="model-desc">[ITEM DESCRIPTION]</span><span class="model-badge">[TAG]</span></div>
+    <div class="model-row"><span class="model-name">[ITEM NAME]</span><span class="model-desc">[ITEM DESCRIPTION]</span><span class="model-badge">[TAG]</span></div>
+    <div class="model-row"><span class="model-name">[ITEM NAME]</span><span class="model-desc">[ITEM DESCRIPTION]</span><span class="model-badge">[TAG]</span></div>
+    <div class="model-row"><span class="model-name">[ITEM NAME]</span><span class="model-desc">[ITEM DESCRIPTION]</span><span class="model-badge">[TAG]</span></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Metrics Bar                          -->
+<!-- Lined (border-top + border-bottom). No fill.    -->
+<!-- Swap: values and labels. Always use 4.          -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="metrics-bar">
+    <div class="metric"><div class="metric-val">[VALUE]</div><div class="metric-label">[LABEL]</div></div>
+    <div class="metric"><div class="metric-val">[VALUE]</div><div class="metric-label">[LABEL]</div></div>
+    <div class="metric"><div class="metric-val">[VALUE]</div><div class="metric-label">[LABEL]</div></div>
+    <div class="metric"><div class="metric-val">[VALUE]</div><div class="metric-label">[LABEL]</div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Architecture / Detail Card           -->
+<!-- Outlined card with gradient top bar (decorative)-->
+<!-- Two columns, lined rows inside. Gradient dots.  -->
+<!-- Swap: column titles, row items.                 -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-label">[SECTION LABEL]</div>
+  <div class="section-title">[SECTION TITLE]</div>
+  <div class="section-desc">[SECTION DESCRIPTION]</div>
+  <div class="arch-card">
+    <div class="arch-grad"></div>
+    <div class="arch-body">
+      <div class="arch-col">
+        <h3>[COLUMN TITLE]</h3>
+        <div class="arch-item"><div class="arch-dot"></div><span>[ITEM]</span></div>
+        <div class="arch-item"><div class="arch-dot"></div><span>[ITEM]</span></div>
+        <div class="arch-item"><div class="arch-dot"></div><span>[ITEM]</span></div>
+        <div class="arch-item"><div class="arch-dot"></div><span>[ITEM]</span></div>
+      </div>
+      <div class="arch-col">
+        <h3>[COLUMN TITLE]</h3>
+        <div class="arch-item"><div class="arch-dot"></div><span>[ITEM]</span></div>
+        <div class="arch-item"><div class="arch-dot"></div><span>[ITEM]</span></div>
+        <div class="arch-item"><div class="arch-dot"></div><span>[ITEM]</span></div>
+        <div class="arch-item"><div class="arch-dot"></div><span>[ITEM]</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: CTA Box                              -->
+<!-- Outlined with gradient top bar. Centered text.  -->
+<!-- Swap: headline, description, button label.      -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="cta">
+  <div class="cta-box">
+    <h2>[CTA HEADLINE]</h2>
+    <p>[CTA DESCRIPTION — one sentence]</p>
+    <button class="btn-lg btn-lg-solid">[CTA BUTTON]</button>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COMPONENT: Footer                               -->
+<!-- Lined (border-top). White text only.             -->
+<!-- Swap: brand name, link labels.                  -->
+<!-- ═══════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-brand">[BRAND]</div>
+  <div class="footer-links">
+    <a href="#">[LINK]</a>
+    <a href="#">[LINK]</a>
+    <a href="#">[LINK]</a>
+    <a href="#">[LINK]</a>
+  </div>
+  <div class="footer-copy">&copy; 2026 [BRAND]. All rights reserved.</div>
+</footer>
+<div class="grad-bar"></div>
+
+</body>
+</html>
