@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — BlackRoad Template</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+img,svg{image-rendering:crisp-edges}
+:root{--g:linear-gradient(90deg,#FF6B2B,#FF2255,#CC00AA,#8844FF,#4488FF,#00D4FF);--bg:#000;--white:#fff;--black:#000;--border:#1a1a1a;--sg:'Space Grotesk',sans-serif;--jb:'JetBrains Mono',monospace}
+body{background:var(--bg);color:var(--white);font-family:var(--sg)}
+.grad-bar{height:4px;background:var(--g)}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:16px 48px;border-bottom:1px solid var(--border)}
+.nav-logo{font-weight:700;font-size:20px;color:var(--white);display:flex;align-items:center;gap:10px}
+.nav-mark{width:28px;height:4px;border-radius:2px;background:var(--g)}
+.nav-links{display:flex;gap:32px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--white);opacity:.5;text-decoration:none;transition:opacity .2s}
+.nav-links a:hover{opacity:1}
+.nav-links a.active{opacity:1}
+
+/* HEADER */
+.page-header{text-align:center;padding:80px 48px 48px}
+.page-header h1{font-size:48px;font-weight:700;color:var(--white);margin-bottom:16px}
+.page-header p{font-size:16px;color:var(--white);opacity:.4;max-width:480px;margin:0 auto}
+
+/* TOGGLE */
+.toggle-row{display:flex;justify-content:center;gap:0;margin-bottom:64px}
+.toggle-btn{padding:10px 28px;border:1px solid var(--border);background:transparent;color:var(--white);opacity:.5;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sg);transition:all .2s}
+.toggle-btn:first-child{border-radius:6px 0 0 6px}
+.toggle-btn:last-child{border-radius:0 6px 6px 0;border-left:0}
+.toggle-btn.active{opacity:1;border-color:#333}
+
+/* PRICING CARDS */
+.pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1100px;margin:0 auto;padding:0 48px 80px}
+.price-card{border:1px solid var(--border);border-radius:12px;display:flex;flex-direction:column;transition:border-color .2s}
+.price-card:hover{border-color:#333}
+.price-card.featured{border-color:#333;position:relative}
+.price-card.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--g);border-radius:12px 12px 0 0}
+.price-header{padding:32px 28px 24px;border-bottom:1px solid var(--border)}
+.price-name{font-size:14px;font-weight:600;color:var(--white);opacity:.5;text-transform:uppercase;letter-spacing:.06em;margin-bottom:16px}
+.price-amount{display:flex;align-items:baseline;gap:4px}
+.price-dollar{font-size:48px;font-weight:700;color:var(--white)}
+.price-period{font-size:14px;color:var(--white);opacity:.4}
+.price-desc{font-size:13px;color:var(--white);opacity:.4;margin-top:12px;line-height:1.6}
+.price-body{padding:28px;flex:1}
+.price-features{list-style:none}
+.price-features li{font-size:13px;color:var(--white);opacity:.7;padding:8px 0;display:flex;align-items:center;gap:10px}
+.price-features li::before{content:'';width:16px;height:16px;border-radius:50%;border:1px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.price-features li.included::before{background:var(--g135);border:none}
+.price-footer{padding:20px 28px 28px}
+.btn-price{width:100%;padding:12px;border-radius:6px;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--sg);transition:all .2s}
+.btn-price-outline{background:transparent;border:1px solid var(--border);color:var(--white)}
+.btn-price-outline:hover{border-color:#444}
+.btn-price-solid{background:var(--white);border:none;color:var(--black)}
+
+/* FAQ */
+.faq{max-width:700px;margin:0 auto;padding:80px 48px}
+.faq h2{font-size:28px;font-weight:700;color:var(--white);text-align:center;margin-bottom:48px}
+.faq-item{border-bottom:1px solid var(--border);padding:20px 0}
+.faq-q{font-size:15px;font-weight:600;color:var(--white);cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-q span{font-size:18px;color:var(--white);opacity:.3}
+.faq-a{font-size:13px;color:var(--white);opacity:.4;line-height:1.8;margin-top:12px;display:none}
+.faq-item.open .faq-a{display:block}
+
+footer{border-top:1px solid var(--border);padding:32px 48px;text-align:center;font-size:12px;color:var(--white);opacity:.3}
+
+@media(max-width:768px){
+  .pricing{grid-template-columns:1fr;padding:0 20px 48px}
+  .page-header{padding:48px 20px 32px}
+  .page-header h1{font-size:32px}
+  nav{padding:14px 20px}.nav-links{display:none}
+  .faq{padding:48px 20px}
+}
+</style>
+</head>
+<body>
+<div class="grad-bar"></div>
+<nav>
+  <div class="nav-logo"><div class="nav-mark"></div> BlackRoad</div>
+  <div class="nav-links">
+    <a href="#">Product</a>
+    <a href="#">Docs</a>
+    <a href="#" class="active">Pricing</a>
+    <a href="#">Blog</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <h1>Simple, transparent pricing</h1>
+  <p>Start free, scale as you grow. No hidden fees, no vendor lock-in.</p>
+</div>
+
+<div class="toggle-row">
+  <button class="toggle-btn active">Monthly</button>
+  <button class="toggle-btn">Annual (Save 20%)</button>
+</div>
+
+<div class="pricing">
+  <div class="price-card">
+    <div class="price-header">
+      <div class="price-name">Starter</div>
+      <div class="price-amount"><span class="price-dollar">$0</span><span class="price-period">/month</span></div>
+      <div class="price-desc">Perfect for personal projects and experimentation.</div>
+    </div>
+    <div class="price-body">
+      <ul class="price-features">
+        <li class="included">1 edge node</li>
+        <li class="included">5 GB storage</li>
+        <li class="included">Community support</li>
+        <li class="included">Basic monitoring</li>
+        <li>Custom domains</li>
+        <li>AI acceleration</li>
+      </ul>
+    </div>
+    <div class="price-footer">
+      <button class="btn-price btn-price-outline">Get Started</button>
+    </div>
+  </div>
+
+  <div class="price-card featured">
+    <div class="price-header">
+      <div class="price-name">Pro</div>
+      <div class="price-amount"><span class="price-dollar">$29</span><span class="price-period">/month</span></div>
+      <div class="price-desc">For teams building production-grade autonomous systems.</div>
+    </div>
+    <div class="price-body">
+      <ul class="price-features">
+        <li class="included">5 edge nodes</li>
+        <li class="included">100 GB storage</li>
+        <li class="included">Priority support</li>
+        <li class="included">Advanced monitoring</li>
+        <li class="included">Custom domains</li>
+        <li class="included">AI acceleration</li>
+      </ul>
+    </div>
+    <div class="price-footer">
+      <button class="btn-price btn-price-solid">Start Free Trial</button>
+    </div>
+  </div>
+
+  <div class="price-card">
+    <div class="price-header">
+      <div class="price-name">Enterprise</div>
+      <div class="price-amount"><span class="price-dollar">Custom</span></div>
+      <div class="price-desc">Dedicated infrastructure for large-scale deployments.</div>
+    </div>
+    <div class="price-body">
+      <ul class="price-features">
+        <li class="included">Unlimited nodes</li>
+        <li class="included">Unlimited storage</li>
+        <li class="included">Dedicated support</li>
+        <li class="included">SLA guarantee</li>
+        <li class="included">Custom domains</li>
+        <li class="included">AI acceleration</li>
+      </ul>
+    </div>
+    <div class="price-footer">
+      <button class="btn-price btn-price-outline">Contact Sales</button>
+    </div>
+  </div>
+</div>
+
+<div class="faq">
+  <h2>Frequently asked questions</h2>
+  <div class="faq-item open">
+    <div class="faq-q">Can I self-host everything? <span>−</span></div>
+    <div class="faq-a" style="display:block">Yes. BlackRoad OS is fully self-hostable. Every component runs on your own hardware with no cloud dependency required.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">What hardware do I need? <span>+</span></div>
+    <div class="faq-a">Any ARM64 or x86 device works. We recommend Raspberry Pi 5 with Hailo-8 accelerators for optimal AI performance.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Is there a free trial? <span>+</span></div>
+    <div class="faq-a">Pro plans include a 14-day free trial. No credit card required to start.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Can I upgrade or downgrade anytime? <span>+</span></div>
+    <div class="faq-a">Yes. Changes take effect immediately and billing is prorated.</div>
+  </div>
+</div>
+
+<footer>&copy; 2026 BlackRoad. All rights reserved.</footer>
+<div class="grad-bar"></div>
+</body>
+</html>

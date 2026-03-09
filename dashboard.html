@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — BlackRoad Template</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+img,svg{image-rendering:crisp-edges}
+:root{--g:linear-gradient(90deg,#FF6B2B,#FF2255,#CC00AA,#8844FF,#4488FF,#00D4FF);--g135:linear-gradient(135deg,#FF6B2B,#FF2255,#CC00AA,#8844FF,#4488FF,#00D4FF);--bg:#000;--white:#fff;--black:#000;--border:#1a1a1a;--sg:'Space Grotesk',sans-serif;--jb:'JetBrains Mono',monospace}
+body{background:var(--bg);color:var(--white);font-family:var(--sg)}
+.grad-bar{height:3px;background:var(--g)}
+
+/* LAYOUT */
+.dash-layout{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+
+/* SIDEBAR */
+.dash-sidebar{border-right:1px solid var(--border);padding:24px 16px;display:flex;flex-direction:column}
+.dash-logo{font-weight:700;font-size:18px;color:var(--white);display:flex;align-items:center;gap:10px;padding:0 8px;margin-bottom:32px}
+.dash-logo-mark{width:24px;height:3px;border-radius:2px;background:var(--g)}
+.dash-nav{list-style:none;flex:1}
+.dash-nav li{margin-bottom:2px}
+.dash-nav a{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:6px;font-size:13px;font-weight:500;color:var(--white);opacity:.4;text-decoration:none;transition:all .15s}
+.dash-nav a:hover{opacity:.7}
+.dash-nav a.active{opacity:1;border:1px solid var(--border)}
+.dash-nav-icon{font-size:16px;width:20px;text-align:center}
+.dash-nav-sep{height:1px;background:var(--border);margin:16px 8px}
+.dash-user{display:flex;align-items:center;gap:10px;padding:12px 8px;border-top:1px solid var(--border);margin-top:auto}
+.dash-avatar{width:32px;height:32px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:13px;color:var(--white)}
+.dash-user-name{font-size:13px;font-weight:500;color:var(--white)}
+.dash-user-role{font-size:11px;color:var(--white);opacity:.3}
+
+/* MAIN */
+.dash-main{padding:32px}
+.dash-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px}
+.dash-header h1{font-size:24px;font-weight:700;color:var(--white)}
+.dash-header-actions{display:flex;gap:10px}
+.btn-dash{padding:8px 18px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sg)}
+.btn-dash-outline{background:transparent;border:1px solid var(--border);color:var(--white)}
+.btn-dash-solid{background:var(--white);border:none;color:var(--black)}
+
+/* STAT CARDS */
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.stat-card{border:1px solid var(--border);border-radius:10px;padding:20px}
+.stat-label{font-family:var(--jb);font-size:10px;color:var(--white);opacity:.3;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.stat-value{font-size:28px;font-weight:700;color:var(--white)}
+.stat-change{font-family:var(--jb);font-size:11px;margin-top:4px;color:var(--white);opacity:.4}
+.stat-bar{height:3px;border-radius:2px;margin-top:12px;background:var(--border);overflow:hidden}
+.stat-bar-fill{height:100%;border-radius:2px;background:var(--g)}
+
+/* CHART AREA */
+.chart-row{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:24px}
+.chart-card{border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.chart-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--border)}
+.chart-title{font-size:14px;font-weight:600;color:var(--white)}
+.chart-tabs{display:flex;gap:0}
+.chart-tab{padding:4px 12px;font-size:11px;border:1px solid var(--border);background:transparent;color:var(--white);opacity:.4;cursor:pointer;font-family:var(--jb)}
+.chart-tab:first-child{border-radius:4px 0 0 4px}
+.chart-tab:last-child{border-radius:0 4px 4px 0;border-left:0}
+.chart-tab.active{opacity:1;border-color:#333}
+.chart-body{padding:24px 20px;min-height:200px;display:flex;align-items:flex-end;gap:6px}
+/* Fake chart bars */
+.chart-bar{flex:1;border-radius:3px 3px 0 0;background:var(--g135);opacity:.6;transition:opacity .2s}
+.chart-bar:hover{opacity:1}
+
+/* ACTIVITY LIST */
+.activity-list{padding:0 20px 20px}
+.activity-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.activity-item:last-child{border-bottom:none}
+.activity-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--g135)}
+.activity-dot.dim{opacity:.4}
+.activity-text{font-size:13px;color:var(--white);opacity:.6;flex:1}
+.activity-time{font-family:var(--jb);font-size:11px;color:var(--white);opacity:.3}
+
+/* TABLE */
+.table-card{border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.table-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--border)}
+.table-title{font-size:14px;font-weight:600;color:var(--white)}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;font-family:var(--jb);font-size:10px;color:var(--white);opacity:.3;letter-spacing:.06em;text-transform:uppercase;padding:10px 20px;border-bottom:1px solid var(--border)}
+td{font-size:13px;color:var(--white);opacity:.6;padding:12px 20px;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+.status-dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:6px;background:var(--g135)}
+.status-dot.offline{background:none;border:1px solid var(--white);opacity:.3;width:5px;height:5px}
+.status-dot.warning{opacity:.5}
+td code{font-family:var(--jb);font-size:12px}
+
+@media(max-width:1024px){
+  .dash-layout{grid-template-columns:1fr}
+  .dash-sidebar{display:none}
+  .stat-grid{grid-template-columns:repeat(2,1fr)}
+  .chart-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="grad-bar"></div>
+<div class="dash-layout">
+  <aside class="dash-sidebar">
+    <div class="dash-logo"><div class="dash-logo-mark"></div> BlackRoad</div>
+    <ul class="dash-nav">
+      <li><a href="#" class="active"><span class="dash-nav-icon">◈</span> Dashboard</a></li>
+      <li><a href="#"><span class="dash-nav-icon">◇</span> Nodes</a></li>
+      <li><a href="#"><span class="dash-nav-icon">△</span> Services</a></li>
+      <li><a href="#"><span class="dash-nav-icon">○</span> Network</a></li>
+      <li><div class="dash-nav-sep"></div></li>
+      <li><a href="#"><span class="dash-nav-icon">□</span> Deployments</a></li>
+      <li><a href="#"><span class="dash-nav-icon">▽</span> Monitoring</a></li>
+      <li><a href="#"><span class="dash-nav-icon">◎</span> Logs</a></li>
+      <li><div class="dash-nav-sep"></div></li>
+      <li><a href="#"><span class="dash-nav-icon">⚙</span> Settings</a></li>
+    </ul>
+    <div class="dash-user">
+      <div class="dash-avatar">A</div>
+      <div><div class="dash-user-name">Alexa</div><div class="dash-user-role">Admin</div></div>
+    </div>
+  </aside>
+
+  <main class="dash-main">
+    <div class="dash-header">
+      <h1>Dashboard</h1>
+      <div class="dash-header-actions">
+        <button class="btn-dash btn-dash-outline">Export</button>
+        <button class="btn-dash btn-dash-solid">Add Node</button>
+      </div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-label">Active Nodes</div>
+        <div class="stat-value">4/5</div>
+        <div class="stat-change">1 node offline</div>
+        <div class="stat-bar"><div class="stat-bar-fill" style="width:80%"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Compute</div>
+        <div class="stat-value">52 TOPS</div>
+        <div class="stat-change">2x Hailo-8 active</div>
+        <div class="stat-bar"><div class="stat-bar-fill" style="width:100%"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Requests / hr</div>
+        <div class="stat-value">12.4K</div>
+        <div class="stat-change">+8% from last hour</div>
+        <div class="stat-bar"><div class="stat-bar-fill" style="width:62%"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Uptime</div>
+        <div class="stat-value">99.7%</div>
+        <div class="stat-change">Last 30 days</div>
+        <div class="stat-bar"><div class="stat-bar-fill" style="width:99%"></div></div>
+      </div>
+    </div>
+
+    <div class="chart-row">
+      <div class="chart-card">
+        <div class="chart-header">
+          <span class="chart-title">Traffic</span>
+          <div class="chart-tabs">
+            <button class="chart-tab active">24h</button>
+            <button class="chart-tab">7d</button>
+            <button class="chart-tab">30d</button>
+          </div>
+        </div>
+        <div class="chart-body">
+          <div class="chart-bar" style="height:40%"></div>
+          <div class="chart-bar" style="height:55%"></div>
+          <div class="chart-bar" style="height:35%"></div>
+          <div class="chart-bar" style="height:70%"></div>
+          <div class="chart-bar" style="height:90%"></div>
+          <div class="chart-bar" style="height:60%"></div>
+          <div class="chart-bar" style="height:75%"></div>
+          <div class="chart-bar" style="height:45%"></div>
+          <div class="chart-bar" style="height:85%"></div>
+          <div class="chart-bar" style="height:95%"></div>
+          <div class="chart-bar" style="height:70%"></div>
+          <div class="chart-bar" style="height:50%"></div>
+          <div class="chart-bar" style="height:65%"></div>
+          <div class="chart-bar" style="height:80%"></div>
+          <div class="chart-bar" style="height:55%"></div>
+          <div class="chart-bar" style="height:40%"></div>
+          <div class="chart-bar" style="height:70%"></div>
+          <div class="chart-bar" style="height:85%"></div>
+          <div class="chart-bar" style="height:60%"></div>
+          <div class="chart-bar" style="height:75%"></div>
+          <div class="chart-bar" style="height:90%"></div>
+          <div class="chart-bar" style="height:50%"></div>
+          <div class="chart-bar" style="height:65%"></div>
+          <div class="chart-bar" style="height:80%"></div>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-header"><span class="chart-title">Activity</span></div>
+        <div class="activity-list">
+          <div class="activity-item"><div class="activity-dot"></div><div class="activity-text">Cecilia heartbeat OK</div><div class="activity-time">2m</div></div>
+          <div class="activity-item"><div class="activity-dot"></div><div class="activity-text">Deploy to Alice completed</div><div class="activity-time">8m</div></div>
+          <div class="activity-item"><div class="activity-dot dim"></div><div class="activity-text">Octavia undervoltage detected</div><div class="activity-time">15m</div></div>
+          <div class="activity-item"><div class="activity-dot"></div><div class="activity-text">Ollama model loaded: cece-v4</div><div class="activity-time">22m</div></div>
+          <div class="activity-item"><div class="activity-dot"></div><div class="activity-text">WireGuard mesh converged</div><div class="activity-time">31m</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-card">
+      <div class="table-header"><span class="table-title">Nodes</span></div>
+      <table>
+        <thead><tr><th>Name</th><th>Status</th><th>IP</th><th>CPU</th><th>Temp</th><th>Role</th></tr></thead>
+        <tbody>
+          <tr><td>Alice</td><td><span class="status-dot online"></span>Online</td><td><code>192.168.4.49</code></td><td>12%</td><td>52°C</td><td>Gateway</td></tr>
+          <tr><td>Cecilia</td><td><span class="status-dot online"></span>Online</td><td><code>192.168.4.96</code></td><td>34%</td><td>58°C</td><td>AI / TTS</td></tr>
+          <tr><td>Octavia</td><td><span class="status-dot warning"></span>Warning</td><td><code>192.168.4.100</code></td><td>28%</td><td>61°C</td><td>Storage / Git</td></tr>
+          <tr><td>Aria</td><td><span class="status-dot offline"></span>Offline</td><td><code>192.168.4.98</code></td><td>—</td><td>—</td><td>Orchestration</td></tr>
+          <tr><td>Lucidia</td><td><span class="status-dot online"></span>Online</td><td><code>192.168.4.38</code></td><td>18%</td><td>57°C</td><td>APIs / DNS</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+</body>
+</html>

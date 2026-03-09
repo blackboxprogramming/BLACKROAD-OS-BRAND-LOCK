@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — BlackRoad Template</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+img,svg{image-rendering:crisp-edges}
+:root{--g:linear-gradient(90deg,#FF6B2B,#FF2255,#CC00AA,#8844FF,#4488FF,#00D4FF);--bg:#000;--white:#fff;--black:#000;--border:#1a1a1a;--sg:'Space Grotesk',sans-serif;--jb:'JetBrains Mono',monospace}
+body{background:var(--bg);color:var(--white);font-family:var(--sg);min-height:100vh;display:flex;flex-direction:column}
+.grad-bar{height:4px;background:var(--g)}
+
+nav{display:flex;align-items:center;justify-content:space-between;padding:16px 48px;border-bottom:1px solid var(--border)}
+.nav-logo{font-weight:700;font-size:20px;color:var(--white);display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-mark{width:28px;height:4px;border-radius:2px;background:var(--g)}
+
+.error-page{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden}
+
+/* ANIMATED GRADIENT NUMBER */
+.error-code{font-size:200px;font-weight:700;line-height:1;background:var(--g);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:24px;animation:shimmer 3s ease-in-out infinite}
+@keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.error-code{background-size:200% 200%}
+
+.error-page h2{font-size:28px;font-weight:700;color:var(--white);margin-bottom:12px}
+.error-page p{font-size:15px;color:var(--white);opacity:.4;margin-bottom:36px;max-width:400px;margin-left:auto;margin-right:auto;line-height:1.6}
+.error-actions{display:flex;gap:12px;justify-content:center}
+.btn-back{padding:12px 28px;border:none;border-radius:6px;background:var(--white);color:var(--black);font-size:14px;font-weight:600;cursor:pointer;font-family:var(--sg);text-decoration:none}
+.btn-back-outline{padding:12px 28px;border:1px solid var(--border);border-radius:6px;background:transparent;color:var(--white);font-size:14px;font-weight:500;cursor:pointer;font-family:var(--sg);text-decoration:none;transition:border-color .2s}
+.btn-back-outline:hover{border-color:#444}
+
+/* FLOATING SHAPES */
+.float-shape{position:absolute;border-radius:50%;opacity:.06;pointer-events:none}
+.fs-1{width:300px;height:300px;border:3px solid #FF2255;top:10%;left:5%;animation:float 8s ease-in-out infinite}
+.fs-2{width:200px;height:200px;border:3px solid #4488FF;bottom:15%;right:10%;animation:float 6s ease-in-out infinite reverse}
+.fs-3{width:150px;height:150px;border:3px solid #8844FF;top:20%;right:20%;animation:float 7s ease-in-out infinite}
+.fs-4{width:100px;height:100px;border:3px solid #00D4FF;bottom:25%;left:15%;animation:float 5s ease-in-out infinite reverse}
+.fs-5{width:60px;height:60px;background:var(--g);bottom:30%;right:30%;border-radius:4px;transform:rotate(45deg);animation:float 9s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+.fs-5{animation:floatrot 9s ease-in-out infinite}
+@keyframes floatrot{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(-20px)}}
+
+.error-terminal{margin-top:48px;border:1px solid var(--border);border-radius:8px;padding:16px 24px;text-align:left;max-width:400px;margin-left:auto;margin-right:auto}
+.error-terminal code{font-family:var(--jb);font-size:12px;color:var(--white);opacity:.4;line-height:1.8;display:block}
+.error-terminal code span{opacity:.2}
+
+footer{border-top:1px solid var(--border);padding:24px 48px;text-align:center;font-size:12px;color:var(--white);opacity:.3}
+
+@media(max-width:768px){
+  .error-code{font-size:100px}
+  .error-page h2{font-size:22px}
+  nav{padding:14px 20px}
+}
+</style>
+</head>
+<body>
+<div class="grad-bar"></div>
+<nav>
+  <a class="nav-logo" href="#"><div class="nav-mark"></div> BlackRoad</a>
+</nav>
+
+<div class="error-page">
+  <div class="float-shape fs-1"></div>
+  <div class="float-shape fs-2"></div>
+  <div class="float-shape fs-3"></div>
+  <div class="float-shape fs-4"></div>
+  <div class="float-shape fs-5"></div>
+
+  <div>
+    <div class="error-code">404</div>
+    <h2>Page not found</h2>
+    <p>The page you're looking for doesn't exist or has been moved to a different location.</p>
+    <div class="error-actions">
+      <a class="btn-back" href="#">Go Home</a>
+      <a class="btn-back-outline" href="#">View Status</a>
+    </div>
+    <div class="error-terminal">
+      <code><span>$</span> curl -I blackroad.io/this-page</code>
+      <code>HTTP/2 404</code>
+      <code>server: cloudflare</code>
+      <code>x-node: alice</code>
+    </div>
+  </div>
+</div>
+
+<footer>&copy; 2026 BlackRoad. All rights reserved.</footer>
+<div class="grad-bar"></div>
+</body>
+</html>

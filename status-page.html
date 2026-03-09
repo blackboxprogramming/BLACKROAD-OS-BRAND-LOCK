@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Status — BlackRoad Template</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+img,svg{image-rendering:crisp-edges}
+:root{--g:linear-gradient(90deg,#FF6B2B,#FF2255,#CC00AA,#8844FF,#4488FF,#00D4FF);--bg:#000;--white:#fff;--black:#000;--border:#1a1a1a;--sg:'Space Grotesk',sans-serif;--jb:'JetBrains Mono',monospace}
+body{background:var(--bg);color:var(--white);font-family:var(--sg)}
+.grad-bar{height:4px;background:var(--g)}
+
+nav{display:flex;align-items:center;justify-content:space-between;padding:16px 48px;border-bottom:1px solid var(--border)}
+.nav-logo{font-weight:700;font-size:20px;color:var(--white);display:flex;align-items:center;gap:10px}
+.nav-mark{width:28px;height:4px;border-radius:2px;background:var(--g)}
+
+.container{max-width:800px;margin:0 auto;padding:0 24px}
+
+/* STATUS BANNER */
+.status-banner{margin:48px 0 32px;padding:20px 24px;border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;gap:12px}
+.status-indicator{width:12px;height:12px;border-radius:50%;flex-shrink:0;background:var(--g135)}
+.status-indicator.operational{box-shadow:0 0 12px rgba(136,68,255,.3)}
+.status-indicator.degraded{opacity:.5}
+.status-indicator.down{background:none;border:2px solid var(--white);opacity:.3;width:10px;height:10px}
+.status-text{font-size:16px;font-weight:600;color:var(--white)}
+.status-updated{font-family:var(--jb);font-size:11px;color:var(--white);opacity:.3;margin-left:auto}
+
+/* SERVICE LIST */
+.service-group{margin-bottom:32px}
+.service-group-title{font-family:var(--jb);font-size:10px;color:var(--white);opacity:.3;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+.service{display:flex;align-items:center;padding:14px 0;border-bottom:1px solid var(--border)}
+.service:first-child{border-top:1px solid var(--border)}
+.service-name{font-size:14px;font-weight:500;color:var(--white);flex:1}
+.service-status{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--white);opacity:.6}
+.service-dot{width:6px;height:6px;border-radius:50%;background:var(--g135)}
+.service-dot.degraded{opacity:.5}
+.service-dot.down{background:none;border:1px solid var(--white);opacity:.3;width:5px;height:5px}
+
+/* UPTIME BARS */
+.uptime-section{margin:48px 0}
+.uptime-section h2{font-size:18px;font-weight:600;color:var(--white);margin-bottom:24px}
+.uptime-row{margin-bottom:20px}
+.uptime-label{display:flex;justify-content:space-between;margin-bottom:6px}
+.uptime-name{font-size:13px;font-weight:500;color:var(--white)}
+.uptime-pct{font-family:var(--jb);font-size:12px;color:var(--white);opacity:.4}
+.uptime-bar{display:flex;gap:2px;height:28px}
+.uptime-day{flex:1;border-radius:2px;transition:opacity .15s}
+.uptime-day:hover{opacity:.8}
+.uptime-day.good{background:var(--g135)}
+.uptime-day.warn{background:var(--g135);opacity:.4}
+.uptime-day.bad{background:var(--white);opacity:.15}
+.uptime-day.none{background:var(--border)}
+.uptime-legend{display:flex;justify-content:space-between;margin-top:4px}
+.uptime-legend span{font-family:var(--jb);font-size:10px;color:var(--white);opacity:.2}
+
+/* INCIDENTS */
+.incidents{margin:48px 0 80px}
+.incidents h2{font-size:18px;font-weight:600;color:var(--white);margin-bottom:24px}
+.incident{border:1px solid var(--border);border-radius:8px;padding:20px;margin-bottom:12px}
+.incident-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.incident-title{font-size:14px;font-weight:600;color:var(--white)}
+.incident-date{font-family:var(--jb);font-size:11px;color:var(--white);opacity:.3}
+.incident-body{font-size:13px;color:var(--white);opacity:.4;line-height:1.7}
+.incident-tag{display:inline-flex;align-items:center;gap:6px;padding:3px 8px;border:1px solid var(--border);border-radius:3px;font-size:10px;font-weight:600;color:var(--white);opacity:.5;margin-top:8px}
+.incident-tag::before{content:'';width:6px;height:6px;border-radius:50%}
+.incident-tag.resolved::before{background:var(--g135)}
+.incident-tag.investigating::before{background:var(--g135);opacity:.5}
+
+footer{border-top:1px solid var(--border);padding:32px 48px;text-align:center;font-size:12px;color:var(--white);opacity:.3}
+
+@media(max-width:768px){nav{padding:14px 20px}.container{padding:0 20px}}
+</style>
+</head>
+<body>
+<div class="grad-bar"></div>
+<nav>
+  <div class="nav-logo"><div class="nav-mark"></div> BlackRoad Status</div>
+</nav>
+
+<div class="container">
+  <div class="status-banner">
+    <div class="status-indicator operational"></div>
+    <span class="status-text">All systems operational</span>
+    <span class="status-updated">Updated 2m ago</span>
+  </div>
+
+  <div class="service-group">
+    <div class="service-group-title">Edge Nodes</div>
+    <div class="service"><span class="service-name">Alice (Gateway)</span><span class="service-status"><span class="service-dot up"></span>Operational</span></div>
+    <div class="service"><span class="service-name">Cecilia (AI / TTS)</span><span class="service-status"><span class="service-dot up"></span>Operational</span></div>
+    <div class="service"><span class="service-name">Octavia (Storage / Git)</span><span class="service-status"><span class="service-dot degraded"></span>Degraded</span></div>
+    <div class="service"><span class="service-name">Aria (Orchestration)</span><span class="service-status"><span class="service-dot down"></span>Offline</span></div>
+    <div class="service"><span class="service-name">Lucidia (APIs / DNS)</span><span class="service-status"><span class="service-dot up"></span>Operational</span></div>
+  </div>
+
+  <div class="service-group">
+    <div class="service-group-title">Services</div>
+    <div class="service"><span class="service-name">Cloudflare Tunnels</span><span class="service-status"><span class="service-dot up"></span>Operational</span></div>
+    <div class="service"><span class="service-name">WireGuard Mesh</span><span class="service-status"><span class="service-dot up"></span>Operational</span></div>
+    <div class="service"><span class="service-name">Ollama Inference</span><span class="service-status"><span class="service-dot up"></span>Operational</span></div>
+    <div class="service"><span class="service-name">Gitea</span><span class="service-status"><span class="service-dot up"></span>Operational</span></div>
+    <div class="service"><span class="service-name">Pi-hole DNS</span><span class="service-status"><span class="service-dot up"></span>Operational</span></div>
+  </div>
+
+  <div class="uptime-section">
+    <h2>90-day uptime</h2>
+    <div class="uptime-row">
+      <div class="uptime-label"><span class="uptime-name">Alice</span><span class="uptime-pct">99.98%</span></div>
+      <div class="uptime-bar">
+        <div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day good"></div>
+        <div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day good"></div>
+        <div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day warn"></div><div class="uptime-day good"></div><div class="uptime-day good"></div>
+        <div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day good"></div>
+        <div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day good"></div>
+        <div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day good"></div>
+      </div>
+      <div class="uptime-legend"><span>90 days ago</span><span>Today</span></div>
+    </div>
+    <div class="uptime-row">
+      <div class="uptime-label"><span class="uptime-name">Octavia</span><span class="uptime-pct">97.2%</span></div>
+      <div class="uptime-bar">
+        <div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day warn"></div><div class="uptime-day good"></div><div class="uptime-day good"></div>
+        <div class="uptime-day bad"></div><div class="uptime-day warn"></div><div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day good"></div>
+        <div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day warn"></div>
+        <div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day warn"></div><div class="uptime-day good"></div>
+        <div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day good"></div>
+        <div class="uptime-day good"></div><div class="uptime-day warn"></div><div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day good"></div>
+      </div>
+      <div class="uptime-legend"><span>90 days ago</span><span>Today</span></div>
+    </div>
+    <div class="uptime-row">
+      <div class="uptime-label"><span class="uptime-name">Aria</span><span class="uptime-pct">84.1%</span></div>
+      <div class="uptime-bar">
+        <div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day good"></div>
+        <div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day good"></div><div class="uptime-day warn"></div><div class="uptime-day bad"></div>
+        <div class="uptime-day bad"></div><div class="uptime-day bad"></div><div class="uptime-day bad"></div><div class="uptime-day bad"></div><div class="uptime-day bad"></div>
+        <div class="uptime-day bad"></div><div class="uptime-day bad"></div><div class="uptime-day bad"></div><div class="uptime-day bad"></div><div class="uptime-day bad"></div>
+        <div class="uptime-day bad"></div><div class="uptime-day bad"></div><div class="uptime-day bad"></div><div class="uptime-day bad"></div><div class="uptime-day bad"></div>
+        <div class="uptime-day bad"></div><div class="uptime-day bad"></div><div class="uptime-day bad"></div><div class="uptime-day bad"></div><div class="uptime-day bad"></div>
+      </div>
+      <div class="uptime-legend"><span>90 days ago</span><span>Today</span></div>
+    </div>
+  </div>
+
+  <div class="incidents">
+    <h2>Recent incidents</h2>
+    <div class="incident">
+      <div class="incident-header"><span class="incident-title">Aria unresponsive</span><span class="incident-date">Mar 9, 2026</span></div>
+      <div class="incident-body">Aria node is not responding to ping or SSH. Requires physical reboot. Other nodes unaffected.</div>
+      <span class="incident-tag investigating">Investigating</span>
+    </div>
+    <div class="incident">
+      <div class="incident-header"><span class="incident-title">Octavia undervoltage warning</span><span class="incident-date">Mar 8, 2026</span></div>
+      <div class="incident-body">Throttling detected due to insufficient PSU current for Pi5 + Hailo-8 + NVMe. Performance degraded but operational.</div>
+      <span class="incident-tag resolved">Resolved</span>
+    </div>
+    <div class="incident">
+      <div class="incident-header"><span class="incident-title">Lucidia thermal throttling</span><span class="incident-date">Mar 7, 2026</span></div>
+      <div class="incident-body">World-engine service causing sustained Ollama inference, pushing CPU to 73°C. Service disabled, temps normalized to 58°C.</div>
+      <span class="incident-tag resolved">Resolved</span>
+    </div>
+  </div>
+</div>
+
+<footer>&copy; 2026 BlackRoad. All rights reserved.</footer>
+<div class="grad-bar"></div>
+</body>
+</html>
